@@ -1,3 +1,4 @@
+
 def calcular_monto_total(precio, monto):
     x = precio*monto
     impuesto_pais = 0.25
@@ -12,3 +13,4 @@ def descontar_comision(monto, comision):
 def calcular_monto_plazo_fijo(monto):
     interes = 0.05
     return monto*(interes + 1)
+
