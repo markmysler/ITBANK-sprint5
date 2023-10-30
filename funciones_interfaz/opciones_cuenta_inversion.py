@@ -1,4 +1,5 @@
 from cuenta_inversion import CuentaInversion
+from transaccion import Transaccion
 
 
 def opciones_cuenta_inversion(usuario):
@@ -10,7 +11,8 @@ def opciones_cuenta_inversion(usuario):
             else:
                 print("\nResponda con si o no")
         if abrir == "si":
-            usuario.cuenta_de_inversion = CuentaInversion()
+            usuario.cuenta_de_inversion = CuentaInversion(usuario)
+            usuario.resumen.add_transaccion(Transaccion("ACEPTADA","ALTA_CUENTA_DE_INVERSION","La cuenta de inversion se abrio exitosamente",usuario))
             print("\nCuenta de inversion abierta")
         else:
             print("\nEntendido")

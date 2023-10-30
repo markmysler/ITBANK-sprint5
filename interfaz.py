@@ -3,6 +3,8 @@ from funciones_interfaz.opciones_cuenta_ahorro import opciones_cuentas_ahorro
 from funciones_interfaz.opciones_cuenta_inversion import opciones_cuenta_inversion
 from funciones_interfaz.opciones_cuentas_corrientes import opciones_cuentas_corrientes
 from funciones_interfaz.opciones_tarjeta_credito import opciones_tarjetas_credito
+from output_html_file import create_html_file
+from resumen import Resumen
 
 def pedir_informacion_cliente(cuenta):
     nombre = input("Ingrese su nombre: ")
@@ -60,6 +62,7 @@ def main_menu(usuario):
             opciones_tarjetas_credito(usuario)
         elif producto == 4 and not isinstance(usuario,ClienteClassic):
             opciones_cuenta_inversion(usuario)
+    create_html_file(usuario.resumen.get_resumen())
 
 
 def main():
@@ -77,11 +80,13 @@ def main():
 
     if choice == 1:
         print("\nSeleccionaste la cuenta Classic.")
+        
     elif choice == 2:
         print("\nSeleccionaste la cuenta Gold.")
     elif choice == 3:
         print("\nSeleccionaste la cuenta Black.")
     usuario = pedir_informacion_cliente(choice)
+    usuario.resumen = Resumen(usuario)
     main_menu(usuario)
     return 
 

@@ -73,19 +73,26 @@ def opciones_cuenta_corriente(usuario, num_cuenta, moneda):
         else:
             usuario.cuentas_corrientes_dolares[num_cuenta].depositar(monto)
     elif op == 3:
-        while True:
-            try:
-                monto = int(input("\nIngrese el monto a depositar"))
-                break
-            except ValueError:
-                print("\nIngrese un numero.")
+        
         if moneda == "pesos":
             if usuario.cuentas_corrientes_pesos[num_cuenta].chequera != None:
+                while True:
+                    try:
+                        monto = int(input("\nIngrese el monto a depositar: "))
+                        break
+                    except ValueError:
+                        print("\nIngrese un numero.")
                 usuario.cuentas_corrientes_pesos[num_cuenta].chequera.emitir_cheque(monto)
             else:
                 usuario.asociar_chequera_cuenta_corriente(usuario.cuentas_corrientes_pesos[num_cuenta])
         else:
             if usuario.cuentas_corrientes_dolares[num_cuenta].chequera != None:
+                while True:
+                    try:
+                        monto = int(input("\nIngrese el monto a depositar: "))
+                        break
+                    except ValueError:
+                        print("\nIngrese un numero.")
                 usuario.cuentas_corrientes_dolares[num_cuenta].chequera.emitir_cheque(monto)
             else:
                 usuario.asociar_chequera_cuenta_corriente(usuario.cuentas_corrientes_dolares[num_cuenta])
