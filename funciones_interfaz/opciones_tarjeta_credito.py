@@ -1,4 +1,19 @@
 def opciones_tarjetas_credito(usuario):
+    # Esta función permite a un usuario seleccionar una tarjeta de crédito existente o agregar una nueva.
+
+    # Parámetros:
+    # usuario: Un objeto de usuario que contiene información sobre las tarjetas de crédito del usuario y los proveedores de crédito habilitados.
+
+    # La función primero verifica si el usuario tiene alguna tarjeta de crédito. Si no tiene ninguna, selecciona la opción 2 automáticamente, que es para agregar una nueva tarjeta de crédito.
+
+    # Si el usuario tiene al menos una tarjeta de crédito, se le presentan dos opciones:
+    # 1. Seleccionar una de sus tarjetas de crédito existentes.
+    # 2. Agregar una nueva tarjeta de crédito.
+
+    # Si el usuario selecciona la opción 1, se le pide que ingrese el número de la tarjeta con la que desea operar.
+
+    # Si el usuario selecciona la opción 2, se le pide que seleccione un proveedor de crédito de su lista de proveedores habilitados y luego se agrega una nueva tarjeta de crédito del proveedor seleccionado a su lista de tarjetas.
+    
     if len(usuario.tarjetas_credito) == 0:
         seleccion = 2
     else:
@@ -40,7 +55,21 @@ def opciones_tarjetas_credito(usuario):
             except ValueError:
                 print("\nDebe ingresar un numero entero")
         usuario.agregar_tarjeta_credito(usuario.proveedores_credito_habilitados[proveedor_credito-1])
+        
 def opciones_tarjeta_credito(usuario, num_credito):
+    # Esta función permite a un usuario seleccionar una acción para realizar con una tarjeta de crédito específica.
+
+    # Parámetros:
+    # usuario: Un objeto de usuario que contiene información sobre las tarjetas de crédito del usuario.
+    # num_credito: El número de la tarjeta de crédito con la que el usuario desea operar.
+
+    # La función presenta al usuario las siguientes opciones:
+    # 1. Pagar en un pago.
+    # 2. Pagar en cuotas.
+    # 3. Pagar factura mensual.
+    # 4. Agregar extensión.
+    # 5. Interactuar con las extensiones de la tarjeta (si existen).
+    
     print("\nSelecciona la accion que deseas realizar:\n \n1.Pagar en un pago\n2.Pagar en cuotas\n3.Pagar factura mensual\n4.Agregar extension")
     if len(usuario.tarjetas_credito[num_credito-1].extensiones) != 0:
         print("5.Mis Extensiones\n")
@@ -106,6 +135,17 @@ def opciones_tarjeta_credito(usuario, num_credito):
         opciones_extension(usuario, num_credito, num_extension)
             
 def opciones_extension(usuario, num_credito, num_extension):
+    # Esta función permite a un usuario seleccionar una operación para realizar con una extensión específica de una tarjeta de crédito.
+
+    # Parámetros:
+    # usuario: Un objeto de usuario que contiene información sobre las tarjetas de crédito del usuario.
+    # num_credito: El número de la tarjeta de crédito con la que el usuario desea operar.
+    # num_extension: El número de la extensión con la que el usuario desea operar.
+
+    # La función presenta al usuario las siguientes opciones:
+    # 1. Pagar en un pago.
+    # 2. Pagar en cuotas.
+    
     print("\nSelecciona la operacion que deseas realizar:\n \n1.Pagar en en pago\n2.Pagar en cuotas")
     while True:
         try:

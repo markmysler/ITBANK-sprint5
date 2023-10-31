@@ -1,4 +1,13 @@
 def opciones_cuentas_corrientes(usuario):
+    # Esta función maneja las opciones de las cuentas corrientes de un usuario.
+
+    # Parámetros:
+    # usuario (objeto): Un objeto de usuario que tiene una lista de cuentas corrientes en pesos y dólares.
+
+    # Comportamiento:
+    # Si el usuario no tiene ninguna cuenta corriente, se le dará la opción de crear una.
+    # Si el usuario ya tiene una o más cuentas corrientes, se le dará la opción de seleccionar una cuenta para operar o crear una nueva cuenta.
+    
     while True:
         try:
             if len(usuario.cuentas_corrientes_pesos) + len(usuario.cuentas_corrientes_dolares) == 0:
@@ -36,6 +45,19 @@ def opciones_cuentas_corrientes(usuario):
         except ValueError:
             print("\nPorfavor ingrese un numero.")
 def opciones_cuenta_corriente(usuario, num_cuenta, moneda):
+    # Esta función maneja las opciones de una cuenta corriente específica de un usuario.
+
+    # Parámetros:
+    # usuario (objeto): Un objeto de usuario que tiene una lista de cuentas corrientes en pesos y dólares.
+    # num_cuenta (int): El índice de la cuenta corriente con la que el usuario desea operar.
+    # moneda (str): La moneda de la cuenta corriente ("pesos" o "dolares").
+
+    # Comportamiento:
+    # El usuario puede seleccionar una operación para realizar en su cuenta corriente. Las opciones son:
+    # 1. Consultar saldo
+    # 2. Depositar
+    # 3. Emitir un cheque o asociar una chequera, dependiendo de si ya tienen una chequera asociada o no.
+    
     print("\nSeleccione la operacion que desea realizar: \n1.Consultar saldo\n2.Depositar")
     if moneda == "pesos":
         if usuario.cuentas_corrientes_pesos[num_cuenta].chequera != None:

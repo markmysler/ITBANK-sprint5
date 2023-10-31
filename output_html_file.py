@@ -1,4 +1,13 @@
 def create_html_file(data):
+    # Crea un archivo HTML con estilos CSS aplicados a partir de un diccionario de datos.
+
+    # Args:
+    #     data (dict): Un diccionario que contiene la información del usuario y las transacciones.
+
+    # Returns:
+    #     None
+
+    
     html = '''
     <html>
     <head>

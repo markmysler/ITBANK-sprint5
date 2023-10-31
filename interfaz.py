@@ -7,6 +7,9 @@ from output_html_file import create_html_file
 from resumen import Resumen
 
 def pedir_informacion_cliente(cuenta):
+    # Esta función solicita al usuario que ingrese su nombre, apellido y número de DNI.
+    # Luego, crea una cuenta para el usuario basada en el tipo de cuenta seleccionado.
+    
     nombre = input("\nIngrese su nombre: ")
     apellido = input("\nIngrese su apellido: ")
     
@@ -41,6 +44,9 @@ def pedir_informacion_cliente(cuenta):
 
 
 def main_menu(usuario):
+    # Esta función muestra un menú principal al usuario y le permite seleccionar diferentes opciones.
+    # Las opciones disponibles dependen del tipo de cuenta del usuario.
+    
     while True:
         while True:
             try:
@@ -67,6 +73,9 @@ def main_menu(usuario):
 
 
 def main():
+    # Esta es la función principal que se ejecuta cuando se inicia el programa.
+    # Solicita al usuario que seleccione el tipo de cuenta que desea crear y luego llama a las funciones correspondientes para crear la cuenta y mostrar el menú principal.
+    
     print("\nSelecciona el tipo de cuenta que deseas crear\n \n1. Classic\n2. Gold\n3. Black")
 
     while True:

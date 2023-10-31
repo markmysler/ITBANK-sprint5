@@ -3,6 +3,15 @@ from transaccion import Transaccion
 
 
 def opciones_cuenta_inversion(usuario):
+    # Esta función maneja las opciones de la cuenta de inversión de un usuario.
+
+    # Parámetros:
+    # usuario (objeto): Un objeto de usuario que tiene una propiedad de cuenta_de_inversion.
+
+    # Comportamiento:
+    # Si el usuario no tiene una cuenta de inversión, se le preguntará si desea abrir una.
+    # Si el usuario ya tiene una cuenta de inversión, se le dará la opción de consultar su saldo o depositar en la cuenta.
+    
     if usuario.cuenta_de_inversion == None:
         while True:
             abrir = input("\n¿Abrir cuenta de inversion? (si/no): ")

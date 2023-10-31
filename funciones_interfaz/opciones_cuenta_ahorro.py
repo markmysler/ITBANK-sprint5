@@ -3,6 +3,10 @@ from lista_contactos import lista_contactos
 
 
 def opciones_cuentas_ahorro(usuario):
+    # Esta función permite al usuario seleccionar entre ver sus cuentas de ahorro existentes o crear una nueva cuenta de ahorro.
+    # Si el usuario elige ver sus cuentas existentes, se le presentará una lista de todas sus cuentas y podrá seleccionar una para operar.
+    # Si el usuario elige crear una nueva cuenta, se le pedirá que seleccione la moneda de la cuenta.
+    
     while True:
         try:
             seleccion = int(input("\n1. Mis Cuentas de ahorro\n2. Crear una cuenta de ahorro\n \nTu seleccion: "))
@@ -35,6 +39,14 @@ def opciones_cuentas_ahorro(usuario):
         elif moneda == 2:
             usuario.crear_caja_de_ahorro("dolares")
 def opciones_caja_ahorro(usuario,num_caja, moneda):
+#     La función presenta al usuario una serie de opciones que puede realizar en su cuenta de ahorro, incluyendo:
+
+#     Consultar el saldo de la cuenta.
+#     Depositar dinero en la cuenta.
+#     Transferir dinero desde la cuenta a otra.
+#     Ver o asociar una tarjeta de débito a la cuenta.
+#     Comprar o vender dólares.
+
     print("\nSeleccione la opeacion que desea realizar:\n \n1.Consultar saldo\n2.Depositar\n3.Transferir")
     if moneda == "pesos":
         if usuario.cajas_ahorro_pesos[num_caja].tarjeta_debito != None:
