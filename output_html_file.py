@@ -1,34 +1,65 @@
 def create_html_file(data):
-    # Open the HTML file in write mode
+    html = '''
+    <html>
+    <head>
+        <title>Resumen ITBANK</title>
+        <style>
+            .container {{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }}
+            
+            .user-info {{
+                margin-bottom: 20px;
+            }}
+            
+            .transactions {{
+                list-style-type: none;
+				padding: 0;
+            }}
+            
+            .transaction {{
+                border: 1px solid #ccc;
+				padding: 10px;
+				margin-bottom: 10px;
+				width: 30vw;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Informacion del usuario</h1>
+            <div class="user-info">
+                <p>Numero de cuenta: {numero}</p>
+                <p>Nombre: {nombre}</p>
+                <p>Apellido: {apellido}</p>
+                <p>DNI: {dni}</p>
+                <p>Tipo de cuenta: {tipo}</p>
+            </div>
+            <h2>Transacciones</h2>
+            <ul class="transactions">
+                {transactions}
+            </ul>
+        </div>
+    </body>
+    </html>
+    '''
+
+    transaction_html = ''
+    for transaction in data['transacciones']:
+        transaction_html += '''
+        <li class="transaction">
+            <p>Estado: {estado}</p>
+            <p>Tipo: {tipo}</p>
+            <p>Fecha: {fecha}</p>
+            <p>Numero: {numero}</p>
+            <p>Mensaje: {msj}</p>
+        </li>
+        '''.format(**transaction)
+
+    html = html.format(transactions=transaction_html, **data)
     with open('resumen.html', 'w') as file:
-        # Write the HTML header
-        file.write('<html>\n')
-        file.write('<head>\n')
-        file.write('<title>Resumen</title>\n')
-        file.write('</head>\n')
-        file.write('<body>\n')
-        
-        # Write the user's info
-        file.write('<h1>Informacion del usuario</h1>\n')
-        file.write('<p>Numero de cuenta: {}</p>\n'.format(data['numero']))
-        file.write('<p>Nombre: {}</p>\n'.format(data['nombre']))
-        file.write('<p>Apellido: {}</p>\n'.format(data['apellido']))
-        file.write('<p>DNI: {}</p>\n'.format(data['dni']))
-        file.write('<p>Tipo de cuenta: {}</p>\n'.format(data['tipo']))
-        
-        # Write the list of transactions
-        file.write('<h2>Transacciones</h2>\n')
-        file.write('<ul>\n')
-        for transaction in data['transacciones']:
-            file.write('<li>\n')
-            file.write('<p>Estado: {}</p>\n'.format(transaction['estado']))
-            file.write('<p>Tipo: {}</p>\n'.format(transaction['tipo']))
-            file.write('<p>Fecha: {}</p>\n'.format(transaction['fecha']))
-            file.write('<p>Numero: {}</p>\n'.format(transaction['numero']))
-            file.write('<p>Mensaje: {}</p>\n'.format(transaction['msj']))
-            file.write('</li>\n')
-        file.write('</ul>\n')
-        
-        # Write the HTML footer
-        file.write('</body>\n')
-        file.write('</html>\n')
+        file.write(html)

@@ -65,19 +65,17 @@ class Extension:
             self.tarjeta_madre.saldo_cuotas -= precio
             self.tarjeta_madre.pagos_en_cuotas.append(PagoEnCuotas(precio, cuotas))
             print(f"\nEl pago de ${precio} se pago en {cuotas} cuotas")
-            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("ACEPTADA", f"COMPRA_EN_CUOTAS_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} en {cuotas} cuotas se completo exitosamente", self.usuario))
+            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("ACEPTADA", f"COMPRA_EN_CUOTAS_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} en {cuotas} cuotas se completo exitosamente", self.tarjeta_madre.usuario))
         else:
             print("\nNo tienes suficiente saldo en cuotas")
-            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("RECHAZADA", f"COMPRA_EN_CUOTAS_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} en {cuotas} cuotas fallo. Causa: Saldo para cuotas insuficiente", self.usuario))
+            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("RECHAZADA", f"COMPRA_EN_CUOTAS_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} en {cuotas} cuotas fallo. Causa: Saldo para cuotas insuficiente", self.tarjeta_madre.usuario))
 
     def pagar_un_pago(self, precio):
-        print(precio)
-        print(self.tarjeta_madre.saldo_un_pago)
         if precio <= self.tarjeta_madre.saldo_un_pago:
             self.tarjeta_madre.saldo_un_pago -= precio
             print(f"\nPagaste {precio} en un pago")
-            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("ACEPTADA", f"COMPRA_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} se completo exitosamente", self.usuario))
+            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("ACEPTADA", f"COMPRA_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} se completo exitosamente", self.tarjeta_madre.usuario))
 
         else:
             print("\nSaldo en un pago insuficiente")
-            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("RECHAZADA", f"COMPRA_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} fallo. Causa: Saldo insuficiente", self.usuario))
+            self.tarjeta_madre.usuario.resumen.add_transaccion(Transaccion("RECHAZADA", f"COMPRA_EXTENSION_CREDITO_{self.tarjeta_madre.emisor.upper()}", f"El pago de ${precio} fallo. Causa: Saldo insuficiente", self.tarjeta_madre.usuario))

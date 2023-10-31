@@ -120,6 +120,7 @@ class Cliente:
     def agregar_extension_tarjeta(self, tarjeta):
         if self.total_extensiones < self.max_extensiones_credito:
             tarjeta.extensiones.append(Extension(tarjeta))
+            self.total_extensiones += 1
             print("\nExtension asociada exitosamente")
             self.resumen.add_transaccion(Transaccion("ACEPTADA", "ALTA_EXTENSION", f"Extension asociada con la tarjeta de credito {tarjeta.emisor} numero {tarjeta.numero}", self))
         else:

@@ -7,11 +7,11 @@ from output_html_file import create_html_file
 from resumen import Resumen
 
 def pedir_informacion_cliente(cuenta):
-    nombre = input("Ingrese su nombre: ")
-    apellido = input("Ingrese su apellido: ")
+    nombre = input("\nIngrese su nombre: ")
+    apellido = input("\nIngrese su apellido: ")
     
     while True:
-        dni = input("Ingrese su numero de DNI: ")
+        dni = input("\nIngrese su numero de DNI: ")
         
         try:
             dni = int(dni)
@@ -44,14 +44,14 @@ def main_menu(usuario):
     while True:
         while True:
             try:
-                print("\nOpciones:\n0.Salir\n1.Cuentas de Ahorro")
+                print("\nOpciones:\n \n0.Salir\n1.Cuentas de Ahorro")
                 if not isinstance(usuario,ClienteClassic):
                     producto = int(input("2.Cuentas Corrientes\n3.Tarjetas de Credito\n4.Cuenta de Inversion\n\nTu seleccion (0-4): "))
                 else:
                     producto = int(input("\nTu seleccion (0-1): "))
                 break
             except ValueError:
-                print("\nPorfavor ingrese un numero.")
+                print("\nIngrese un numero.")
         if producto == 0:
             break
         if producto == 1:
@@ -62,11 +62,12 @@ def main_menu(usuario):
             opciones_tarjetas_credito(usuario)
         elif producto == 4 and not isinstance(usuario,ClienteClassic):
             opciones_cuenta_inversion(usuario)
+    print("\nVuelva pronto!\n \nPuede encontrar un resumen de las operaciones realizadas en resumen.html")
     create_html_file(usuario.resumen.get_resumen())
 
 
 def main():
-    print("\nSelecciona el tipo de cuenta que deseas crear\n1. Classic\n2. Gold\n3. Black")
+    print("\nSelecciona el tipo de cuenta que deseas crear\n \n1. Classic\n2. Gold\n3. Black")
 
     while True:
         try:

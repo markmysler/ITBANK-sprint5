@@ -41,15 +41,17 @@ def opciones_caja_ahorro(usuario,num_caja, moneda):
             print("4.Ver tarjeta de debito")
         else:
             print("4.Asociar tarjeta de debito")
+        print("5.Comprar dolares")
     else:
         if usuario.cajas_ahorro_dolares[num_caja].tarjeta_debito != None:
             print("4.Ver tarjeta de debito")
         else:
             print("4.Asociar tarjeta de debito")
+        print("5.Vender dolares")
     while True:
         try:
             opcion = int(input("\nTu seleccion: "))
-            if opcion in [1,2,3,4]:
+            if opcion in [1,2,3,4,5]:
                 if opcion == 1:
                     if moneda == "pesos":
                         usuario.cajas_ahorro_pesos[num_caja].consultar_saldo()
@@ -83,8 +85,52 @@ def opciones_caja_ahorro(usuario,num_caja, moneda):
                             opciones_tarjeta_debito(usuario,moneda, num_caja)
                         else:
                             usuario.asociar_tarjeta_debito_caja_ahorro(usuario.cajas_ahorro_dolares[num_caja])
+                elif opcion == 5:
+                    if moneda == "pesos":
+                        if len(usuario.cajas_ahorro_dolares) != 0:
+                            while True:
+                                try:
+                                    monto = int(input("\nIngrese el monto de dolares a comprar: "))
+                                    break
+                                except ValueError:
+                                    print("\nIngrese un numero")
+                            print("\nOpciones:")
+                            for caja in usuario.cajas_ahorro_dolares:
+                                print(f"\n {caja.numero}")
+                            while True:
+                                try:
+                                    nro = int(input("\nIngrese el numero de la cuenta que desea utilizar: "))
+                                    if nro > 0 and nro <= len(usuario.cajas_ahorro_dolares):
+                                        break
+                                    else:
+                                        print("\nIngrese el numero de la cuenta donde desea depositar los dolares")
+                                except ValueError:
+                                    print("\nIngrese un numero")
+                            usuario.cajas_ahorro_pesos[num_caja].comprar_vender_dolares(monto,usuario.cajas_ahorro_dolares[nro-1])
+                        else:
+                            print("\nUna cuenta de ahorro en dolares es necesaria para comprar dolares")
+                    else:
+                        while True:
+                            try:
+                                monto = int(input("\nIngrese el monto de dolares a vender: "))
+                                break
+                            except ValueError:
+                                print("\nIngrese un numero")
+                            print("\nOpciones:")
+                            for caja in usuario.cajas_ahorro_pesos:
+                                print(f"\n {caja.numero}")
+                        while True:
+                            try:
+                                nro = int(input("\nIngrese el numero de la cuenta que desea utilizar: "))
+                                if nro > 0 and nro <= len(usuario.cajas_ahorro_pesos):
+                                    break
+                                else:
+                                    print("\nIngrese el numero de la cuenta donde desea depositar los pesos")
+                            except ValueError:
+                                print("\nIngrese un numero")
+                            usuario.cajas_ahorro_dolares[num_caja].comprar_vender_dolares(monto,usuario.cajas_ahorro_pesos[nro-1])
                 break
             else:
-                print("\nIngrese un numero entre 1 y 4")
+                print("\nIngrese un numero entre 1 y 5")
         except ValueError:
             print("\nPorfavor ingrese un numero.")

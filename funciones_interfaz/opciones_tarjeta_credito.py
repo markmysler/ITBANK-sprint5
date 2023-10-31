@@ -106,7 +106,7 @@ def opciones_tarjeta_credito(usuario, num_credito):
         opciones_extension(usuario, num_credito, num_extension)
             
 def opciones_extension(usuario, num_credito, num_extension):
-    print("\nSelecciona la operacion que deseas realizar: \n1.Pagar en in pago\n2.Pagar en cuotas")
+    print("\nSelecciona la operacion que deseas realizar:\n \n1.Pagar en en pago\n2.Pagar en cuotas")
     while True:
         try:
             operacion = int(input("\nTu seleccion: "))
